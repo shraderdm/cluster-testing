@@ -1,6 +1,4 @@
-# kustomization.yml
-namespace: metallb-system
-
 resources:
-  - https://github.com/metallb/metallb/tree/main/manifests
-  - configmap.yml 
+  - metallb.yaml
+  - namespace.yaml
+  - configmap.yaml
