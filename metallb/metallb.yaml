@@ -7,19 +7,12 @@ metadata:
   namespace: metallb-system
 spec:
   allowPrivilegeEscalation: false
-  allowedCapabilities: []
-  allowedHostPaths: []
-  defaultAddCapabilities: []
   defaultAllowPrivilegeEscalation: false
   fsGroup:
     ranges:
     - max: 65535
       min: 1
     rule: MustRunAs
-  hostIPC: false
-  hostNetwork: false
-  hostPID: false
-  privileged: false
   readOnlyRootFilesystem: true
   requiredDropCapabilities:
   - ALL
@@ -51,14 +44,10 @@ spec:
   allowPrivilegeEscalation: false
   allowedCapabilities:
   - NET_RAW
-  allowedHostPaths: []
-  defaultAddCapabilities: []
   defaultAllowPrivilegeEscalation: false
   fsGroup:
     rule: RunAsAny
-  hostIPC: false
   hostNetwork: true
-  hostPID: false
   hostPorts:
   - max: 7472
     min: 7472
