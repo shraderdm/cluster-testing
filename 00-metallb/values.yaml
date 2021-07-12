@@ -28,12 +28,7 @@
 ## Refer to https://metallb.universe.tf/configuration/ for
 ## available options.
 #
-configInline:
-  address-pools:
-   - name: default
-     protocol: layer2
-     addresses:
-     - 198.168.200.1/32
+configInline: {}
 
 ## String to partially override metallb.fullname include (will maintain the release name)
 ##
