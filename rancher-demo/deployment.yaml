@@ -10,7 +10,7 @@ spec:
   template:
     spec:
       containers:
-      - image: powerninjas/rancher-demo:latest
+      - image: monachus/rancher-demo:latest
         name: rancher-demo
         envFrom:
         - configMapRef:
