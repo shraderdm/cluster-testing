@@ -7,9 +7,6 @@ metadata:
   namespace: metallb-system
 spec:
   allowPrivilegeEscalation: false
-  allowedCapabilities: []
-  allowedHostPaths: []
-  defaultAddCapabilities: []
   defaultAllowPrivilegeEscalation: false
   fsGroup:
     ranges:
@@ -51,8 +48,6 @@ spec:
   allowPrivilegeEscalation: false
   allowedCapabilities:
   - NET_RAW
-  allowedHostPaths: []
-  defaultAddCapabilities: []
   defaultAllowPrivilegeEscalation: false
   fsGroup:
     rule: RunAsAny
