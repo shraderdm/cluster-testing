@@ -47,9 +47,7 @@ spec:
   defaultAllowPrivilegeEscalation: false
   fsGroup:
     rule: RunAsAny
-  hostIPC: false
   hostNetwork: true
-  hostPID: false
   hostPorts:
   - max: 7472
     min: 7472
