@@ -26,7 +26,7 @@ helm:
   # Custom values that will be passed as values.yaml to the installation
   values:
     - configInline:
-      - address-pools:
+        address-pools:
         - name: default
           protocol: layer2
           addresses:
