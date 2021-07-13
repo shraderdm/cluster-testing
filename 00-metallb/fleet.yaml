@@ -30,4 +30,4 @@ helm:
       - name: default
         protocol: layer2
         addresses:
-        - 192.168.200.2/32
+        - global.fleet.clusterLabels.metallbIP
