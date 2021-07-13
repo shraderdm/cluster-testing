@@ -5,4 +5,4 @@ metadata:
   name: source-vars
 data:
   MY_NAMESPACE: rancher-demo
-  URL_HOST: rancher-demo.cluster1.example.home
+  URL_HOST: global.fleet.clusterLabels.demoURL
