@@ -1,0 +1,108 @@
+defaultNamespace: default
+
+
+helm:
+  releaseName: ghost-blog
+  chart: "ghost"
+  repo: "https://charts.bitnami.com/bitnami"
+  version: "14.0.4"
+  force: true
+  timeoutSeconds: 0
+  values:
+		allowEmptyPassword: true
+		clusterDomain: cluster.local
+		containerPorts:
+		  http: 2368
+		  https: 2368
+		containerSecurityContext:
+		  enabled: true
+		  runAsNonRoot: true
+		externalDatabase:
+		  database: bitnami_ghost
+		  host: localhost
+		  password: ''
+		  port: 3306
+		  user: bn_ghost
+		ghostBlogTitle: Rancher Government Solutions Blog
+		ghostEmail: user@example.com
+		ghostEnableHttps: true
+		ghostHost: ''
+		ghostPassword: ''
+		ghostPath: /
+		ghostSkipInstall: false
+		ghostUsername: user
+		image:
+		  debug: false
+		  pullPolicy: IfNotPresent
+		  registry: docker.io
+		  repository: bitnami/ghost
+		  tag: 4.9.3-debian-10-r0
+		ingress:
+		  apiVersion: null
+		  certManager: false
+		  enabled: true
+		  hostname: global.fleet.clusterLabels.ghostname
+		  path: /
+		  pathType: ImplementationSpecific
+		  selfSigned: false
+		  tls: false
+		livenessProbe:
+		  enabled: true
+		  failureThreshold: 6
+		  initialDelaySeconds: 120
+		  periodSeconds: 10
+		  successThreshold: 1
+		  timeoutSeconds: 5
+		mariadb:
+		  architecture: standalone
+		  auth:
+			database: bitnami_ghost
+			password: ''
+			rootPassword: ''
+			username: bn_ghost
+		  enabled: true
+		  primary:
+			persistence:
+			  accessModes:
+				- ReadWriteOnce
+			  enabled: true
+			  size: 8Gi
+		persistence:
+		  accessModes:
+			- ReadWriteOnce
+		  enabled: true
+		  size: 8Gi
+		podAffinityPreset: ''
+		podAntiAffinityPreset: soft
+		podSecurityContext:
+		  enabled: true
+		  fsGroup: 1001
+		readinessProbe:
+		  enabled: true
+		  failureThreshold: 6
+		  initialDelaySeconds: 30
+		  periodSeconds: 5
+		  successThreshold: 1
+		  timeoutSeconds: 3
+		replicaCount: 1
+		service:
+		  externalTrafficPolicy: Cluster
+		  httpsPort: 443
+		  port: 80
+		  type: ClusterIP
+		smtpHost: ''
+		smtpPassword: ''
+		smtpPort: ''
+		smtpService: ''
+		smtpUser: ''
+		updateStrategy:
+		  type: RollingUpdate
+		volumePermissions:
+		  enabled: false
+		  image:
+			pullPolicy: IfNotPresent
+			registry: docker.io
+			repository: bitnami/bitnami-shell
+			tag: 10-debian-10-r129
+		  securityContext:
+			runAsUser: 0
