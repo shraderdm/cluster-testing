@@ -30,4 +30,4 @@ helm:
       - name: default
         protocol: layer2
         addresses:
-        - global.fleet.clusterLabels.metallbIP
+        - global.fleet.clusterLabels.management.cattle.io.metallbIP
