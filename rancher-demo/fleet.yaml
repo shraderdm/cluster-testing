@@ -16,6 +16,7 @@ targetCustomizations:
           - host: rancher-demo.cluster1.example.home 
             paths: 
               - path: /
+                pathType: ImplementationSpecific  
   clusterSelector:
     matchLabels:
       fleet-demo: cluster1
@@ -28,9 +29,8 @@ targetCustomizations:
           - host: rancher-demo.cluster2.example.home
             paths:
               - path: /
+                pathType: ImplementationSpecific
+  clusterSelector:
+    matchLabels:
+      fleet-demo: cluster2
 
-#    ingress:
-#      hosts:
-#        - host: global.fleet.clusterLabels.rancherDemoHostname
-#          paths:
-#            - path: /
