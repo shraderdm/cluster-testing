@@ -42,7 +42,7 @@ targetCustomizations:
   helm:
     values:
       env:
-        COW_COLOR: "red"
+        COW_COLOR: "purple"
       ingress:
         hosts:
           - host: rancher-demo.cluster3.example.home
