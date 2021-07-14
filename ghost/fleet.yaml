@@ -1,4 +1,5 @@
 defaultNamespace: default
+
 helm:
   releaseName: ghost-blog
   chart: "ghost"
@@ -7,12 +8,13 @@ helm:
   force: true
   timeoutSeconds: 0
   values:
-    ghostBlogTitle: Rancher Government Solutions Blog
-    ingress:
-      enabled: true
-      hostname: global.fleet.clusterLabels.ghostname
-      path: /
-      pathType: ImplementationSpecific 
+    persistence:
+      enabled: false
+    mariadb:
+      primary:
+        persistence:
+          enabled: false
+    ghostBlogTitle: Rancher Government Solutions Blog 
     service:
       externalTrafficPolicy: Cluster
       httpsPort: 443
@@ -22,4 +24,78 @@ helm:
       tls: false
       certManager: false
       selfSigned: false
+      
+      
+      
+targetCustomizations:      
+- name: ghost-dev
+  helm:
+    values:
+      ghostBlogTitle: DEV Rancher Federal Blog
+      ingress:
+        enabled: true
+        hostname: ghost.dev.example.home
+        path: /
+        pathType: ImplementationSpecific    
+  clusterSelector:
+    matchLabels:
+      fleet-demo: dev
 
+- name: ghost-cluster3
+  helm:
+    values:
+      ghostBlogTitle: Cluster 3 RGS Blog
+      ingress:
+        enabled: true
+        hostname: ghost.cluster3.example.home
+        path: /
+        pathType: ImplementationSpecific    
+  clusterSelector:
+    matchLabels:
+      fleet-demo: cluster3
+
+- name: ghost-cluster2
+  helm:
+    values:
+      ghostBlogTitle: Cluster 2 RFED Blog
+      ingress:
+        enabled: true
+        hostname: ghost.cluster2.example.home
+        path: /
+        pathType: ImplementationSpecific    
+  clusterSelector:
+    matchLabels:
+      fleet-demo: cluster2
+
+
+- name: ghost-cluster
+  helm:
+    values:
+      ingress:
+        enabled: true
+        hostname: ghost.cluster1.example.home
+        path: /
+        pathType: ImplementationSpecific    
+  clusterSelector:
+    matchLabels:
+      fleet-demo: cluster1
+
+- name: persistence
+  helm:
+    values:
+      persistence:
+        enabled: true
+        accessModes:
+          - ReadWriteOnce
+        size: 1Gi
+      mariadb:
+        primary:
+          persistence:
+            enabled: true
+            storageClass:
+            accessModes:
+              - ReadWriteOnce
+            size: 1Gi
+  clusterSelector:
+    matchLabels:
+      pv: true
