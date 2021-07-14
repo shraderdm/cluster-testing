@@ -56,7 +56,7 @@ helm:
     mariadb:
       architecture: standalone
       auth:
-    	database: bitnami_ghost
+    	database: 'bitnami_ghost'
     	password: ''
     	rootPassword: ''
     	username: bn_ghost
