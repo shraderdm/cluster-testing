@@ -5,8 +5,28 @@ helm:
     env:
       SHOW_VERSION: true
       COW_COLOR: green
-    ingress:
-      hosts:
-        - host: global.fleet.clusterLabels.rancherDemoHostname
-          paths:
-            - path: /
+
+
+targetCustomizations:
+- name: cluster1
+  helm:
+    values:
+      ingress:
+        hosts:
+          - host: rancher-demo.cluster1.example.home            
+  clusterSelector:
+    matchLabels:
+      fleet-demo: cluster1
+
+- name: cluster2
+  helm:
+    values:
+      ingress:
+        hosts:
+          - host: rancher-demo.cluster2.example.home
+
+#    ingress:
+#      hosts:
+#        - host: global.fleet.clusterLabels.rancherDemoHostname
+#          paths:
+#            - path: /
