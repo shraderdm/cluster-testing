@@ -8,9 +8,11 @@ helm:
 
 
 targetCustomizations:
-- name: cluster1
+- name: cluster1-rd
   helm:
     values:
+      env:
+        COW_COLOR: black
       ingress:
         hosts:
           - host: rancher-demo.cluster1.example.home 
@@ -21,9 +23,11 @@ targetCustomizations:
     matchLabels:
       fleet-demo: cluster1
 
-- name: cluster2
+- name: cluster2-rd
   helm:
     values:
+      env: 
+        COW_COLOR: purple
       ingress:
         hosts:
           - host: rancher-demo.cluster2.example.home
@@ -33,4 +37,35 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       fleet-demo: cluster2
+
+- name: cluster3-rd
+  helm:
+    values:
+      env:
+        COW_COLOR: red
+      ingress:
+        hosts:
+          - host: rancher-demo.cluster3.example.home
+            paths:
+              - path: /
+                pathType: ImplementationSpecific
+  clusterSelector:
+    matchLabels:
+      fleet-demo: cluster3
+
+
+- name: dev-rd
+  helm:
+    values:
+      env:
+        COW_COLOR: blue
+      ingress:
+        hosts:
+          - host: rancher-demo.dev.example.home
+            paths:
+              - path: /
+                pathType: ImplementationSpecific
+  clusterSelector:
+    matchLabels:
+      fleet-demo: dev
 
