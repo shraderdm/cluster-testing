@@ -13,7 +13,9 @@ targetCustomizations:
     values:
       ingress:
         hosts:
-          - host: rancher-demo.cluster1.example.home            
+          - host: rancher-demo.cluster1.example.home 
+            paths: 
+              - path: /
   clusterSelector:
     matchLabels:
       fleet-demo: cluster1
@@ -24,6 +26,8 @@ targetCustomizations:
       ingress:
         hosts:
           - host: rancher-demo.cluster2.example.home
+            paths:
+              - path: /
 
 #    ingress:
 #      hosts:
