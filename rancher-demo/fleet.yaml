@@ -1,6 +1,6 @@
 defaultNamespace: default
 helm:
-  chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.1.1.tgz
+  chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.1.1.tgz?raw=true
   values:
     env:
       SHOW_VERSION: true
