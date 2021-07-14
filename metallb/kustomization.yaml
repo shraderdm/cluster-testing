@@ -1,6 +1,0 @@
-namespace: metallb-system
-
-resources:
-  - 00-namespace.yaml
-  - metallb.yaml
-  - configmap.yaml
