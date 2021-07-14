@@ -12,8 +12,14 @@ helm:
       enabled: true
       hostname: global.fleet.clusterLabels.ghostname
       path: /
+      pathType: ImplementationSpecific 
     service:
       externalTrafficPolicy: Cluster
       httpsPort: 443
       port: 80
       type: ClusterIP
+      clusterIP: None
+      tls: false
+      certManager: false
+      selfSigned: false
+
