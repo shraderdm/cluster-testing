@@ -35,7 +35,7 @@ targetCustomizations:
           - name: default
             protocol: layer2
             addresses:
-            - 192.168.200.1
+            - 192.168.200.1/32
     clusterSelector:
       matchLabels:
         fleet-demo: cluster1
@@ -47,7 +47,31 @@ targetCustomizations:
           - name: default
             protocol: layer2
             addresses:
-            - 192.168.200.2
+            - 192.168.200.2/32
     clusterSelector:
       matchLabels:
         fleet-demo: cluster2
+  - name: cluster3-metallb
+    helm:
+      values:
+        configInline:
+          address-pools:
+          - name: default
+            protocol: layer2
+            addresses:
+            - 192.168.200.3/32
+    clusterSelector:
+      matchLabels:
+        fleet-demo: cluster3
+  - name: cluster-dev-metallb
+    helm:
+      values:
+        configInline:
+          address-pools:
+          - name: default
+            protocol: layer2
+            addresses:
+            - 192.168.200.10/32
+    clusterSelector:
+      matchLabels:
+        fleet-demo: dev
