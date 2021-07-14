@@ -106,3 +106,4 @@ helm:
 			tag: 10-debian-10-r129
 		  securityContext:
 			runAsUser: 0
+			
