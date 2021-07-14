@@ -1,6 +1,12 @@
 defaultNamespace: default
 helm:
   chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.1.1.tgz
-values:
-  SHOW_VERSION: true
-  COW_COLOR: green
+  values:
+    env:
+      SHOW_VERSION: true
+      COW_COLOR: green
+    ingress:
+      hosts:
+        - host: global.fleet.clusterLabels.rancherDemoHostname
+          paths:
+            - path: /
