@@ -4,15 +4,13 @@ helm:
   values:
     env:
       SHOW_VERSION: true
-      COW_COLOR: "green"
+      COW_COLOR: "blue"
 
 
 targetCustomizations:
 - name: cluster1-rd
   helm:
     values:
-      env:
-        COW_COLOR: "black"
       ingress:
         hosts:
           - host: rancher-demo.cluster1.example.home 
@@ -26,8 +24,6 @@ targetCustomizations:
 - name: cluster2-rd
   helm:
     values:
-      env: 
-        COW_COLOR: "purple"
       ingress:
         hosts:
           - host: rancher-demo.cluster2.example.home
@@ -41,8 +37,6 @@ targetCustomizations:
 - name: cluster3-rd
   helm:
     values:
-      env:
-        COW_COLOR: "orange"
       ingress:
         hosts:
           - host: rancher-demo.cluster3.example.home
@@ -57,8 +51,6 @@ targetCustomizations:
 - name: dev-rd
   helm:
     values:
-      env:
-        COW_COLOR: "blue"
       ingress:
         hosts:
           - host: rancher-demo.dev.example.home
