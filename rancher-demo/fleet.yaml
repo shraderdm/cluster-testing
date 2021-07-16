@@ -11,6 +11,8 @@ targetCustomizations:
 - name: cluster1-rd
   helm:
     values:
+      env:
+        TITLE: 'CLUSTER1 demo'    
       ingress:
         hosts:
           - host: rancher-demo.cluster1.example.home 
@@ -24,6 +26,8 @@ targetCustomizations:
 - name: cluster2-rd
   helm:
     values:
+      env:
+        TITLE: 'CLUSTER2 demo'
       ingress:
         hosts:
           - host: rancher-demo.cluster2.example.home
@@ -37,6 +41,8 @@ targetCustomizations:
 - name: cluster3-rd
   helm:
     values:
+      env:
+        TITLE: 'CLUSTER3 demo'    
       ingress:
         hosts:
           - host: rancher-demo.cluster3.example.home
@@ -51,6 +57,8 @@ targetCustomizations:
 - name: dev-rd
   helm:
     values:
+      env:
+        TITLE: 'DEV demo'
       ingress:
         hosts:
           - host: rancher-demo.dev.example.home
