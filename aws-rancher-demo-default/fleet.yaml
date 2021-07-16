@@ -1,0 +1,13 @@
+defaultNamespace: default
+helm:
+  chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.1.2.tgz?raw=true
+  values:
+    env:
+      SHOW_VERSION: true
+      COW_COLOR: "white"
+    ingress:
+      hosts:
+        - host: xip.io
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
