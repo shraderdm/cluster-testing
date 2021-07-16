@@ -4,7 +4,7 @@ helm:
   values:
     env:
       SHOW_VERSION: true
-      COW_COLOR: "blue"
+      COW_COLOR: "red"
 
 
 targetCustomizations:
