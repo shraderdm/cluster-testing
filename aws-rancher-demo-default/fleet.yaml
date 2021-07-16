@@ -11,3 +11,4 @@ helm:
           paths:
             - path: /
               pathType: ImplementationSpecific
+              
