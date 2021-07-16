@@ -12,7 +12,7 @@ targetCustomizations:
   helm:
     values:
       env:
-        TITLE: 'CLUSTER1 demo'    
+        TITLE: "CLUSTER1 demo"    
       ingress:
         hosts:
           - host: rancher-demo.cluster1.example.home 
@@ -27,7 +27,7 @@ targetCustomizations:
   helm:
     values:
       env:
-        TITLE: 'CLUSTER2 demo'
+        TITLE: "CLUSTER2 demo"
       ingress:
         hosts:
           - host: rancher-demo.cluster2.example.home
@@ -42,7 +42,7 @@ targetCustomizations:
   helm:
     values:
       env:
-        TITLE: 'CLUSTER3 demo'    
+        TITLE: "CLUSTER3 demo"    
       ingress:
         hosts:
           - host: rancher-demo.cluster3.example.home
@@ -58,7 +58,7 @@ targetCustomizations:
   helm:
     values:
       env:
-        TITLE: 'DEV demo'
+        TITLE: "DEV demo"
       ingress:
         hosts:
           - host: rancher-demo.dev.example.home
