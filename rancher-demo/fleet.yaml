@@ -1,6 +1,6 @@
 defaultNamespace: default
 helm:
-  chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.1.1.tgz?raw=true
+  chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.1.2.tgz?raw=true
   values:
     env:
       SHOW_VERSION: true
@@ -10,7 +10,9 @@ helm:
 targetCustomizations:
 - name: cluster1-rd
   helm:
-    values:   
+    values:
+      env:
+        TITLE: "cluster1 RGS DEMO"    
       ingress:
         hosts:
           - host: rancher-demo.cluster1.example.home 
@@ -24,6 +26,8 @@ targetCustomizations:
 - name: cluster2-rd
   helm:
     values:
+      env:
+        TITLE: "cluster2 RGS DEMO"    
       ingress:
         hosts:
           - host: rancher-demo.cluster2.example.home
@@ -36,7 +40,9 @@ targetCustomizations:
 
 - name: cluster3-rd
   helm:
-    values:   
+    values:
+      env:
+        TITLE: "CLUSTER3 RGS DEMO"
       ingress:
         hosts:
           - host: rancher-demo.cluster3.example.home
@@ -51,6 +57,8 @@ targetCustomizations:
 - name: dev-rd
   helm:
     values:
+      env:
+        TITLE: "DEV RGS DEMO"
       ingress:
         hosts:
           - host: rancher-demo.dev.example.home
