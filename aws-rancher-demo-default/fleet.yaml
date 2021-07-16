@@ -7,7 +7,7 @@ helm:
       COW_COLOR: "white"
     ingress:
       hosts:
-        - host: xip.io
+        - host: nip.io
           paths:
             - path: /
               pathType: ImplementationSpecific
