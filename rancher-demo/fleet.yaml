@@ -26,6 +26,11 @@ targetCustomizations:
 - name: cluster2-rd
   helm:
     values:
+      autoscaling:
+        enabled: true
+        minReplicas: 1
+        maxReplicas: 100
+        targetCPUUtilizationPercentage: 80
       env:
         TITLE: "cluster2 RGS DEMO"    
       ingress:
