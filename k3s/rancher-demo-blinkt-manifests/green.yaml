@@ -82,7 +82,9 @@ spec:
           resources:
             requests:
               cpu: 4m
-              memory: 10Mi
+              memory: 485Mi
+            limits:
+              memory: 485Mi
 ---
 # Source: rancher-demo/templates/ingress.yaml
 apiVersion: networking.k8s.io/v1

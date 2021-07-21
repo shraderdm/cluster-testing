@@ -72,7 +72,9 @@ spec:
           resources:
             requests:
               cpu: 4m
-              memory: 10Mi
+              memory: 485Mi
+            limit:    
+              memory: 485Mi
       priorityClassName: high-priority
 ---
 # Source: rancher-demo/templates/hpa.yaml
