@@ -1,0 +1,110 @@
+# Source: rancher-demo/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rancher-demo
+  namespace: green-demo
+  labels:
+    app.kubernetes.io/name: rancher-green
+    app.kubernetes.io/instance: rgs-green  
+---
+# Source: rancher-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rgs-green-rancher-demo
+  namespace: green-demo
+  labels:
+    app.kubernetes.io/name: rancher-green
+    app.kubernetes.io/instance: rgs-green
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: rancher-green
+    app.kubernetes.io/instance: rgs-green
+---
+# Source: rancher-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rgs-green-rancher-demo
+  namespace: green-demo
+  labels:
+    app.kubernetes.io/name: rancher-green
+    app.kubernetes.io/instance: rgs-green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rancher-green
+      app.kubernetes.io/instance: rgs-green
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: rancher-green
+        app.kubernetes.io/instance: rgs-green
+        blinkt: show
+        blinktColor: 00FF00
+    spec:
+      priorityClassName: med-priority
+      serviceAccountName: rancher-demo
+      securityContext:
+        {}
+      containers:
+        - name: rancher-green
+          securityContext:
+            {}
+          image: "bgulla/rancher-demo:latest"
+          imagePullPolicy: IfNotPresent
+          env:          
+          - name: COW_COLOR
+            value: "green"
+          - name: METADATA
+            value: "Deployed via Fleet"
+          - name: SHOW_VERSION
+            value: "false"
+          - name: TITLE
+            value: "k3s green demo"  
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            requests:
+              cpu: 4m
+              memory: 10Mi
+---
+# Source: rancher-demo/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rgs-green-rancher-demo
+  namespace: green-demo
+  labels:
+    app.kubernetes.io/name: rancher-green
+    app.kubernetes.io/instance: rgs-green
+spec:
+  rules:
+    - host: "rancher-demo.green.k3s.example.home"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: rgs-green-rancher-demo
+                port:
+                  number: 80

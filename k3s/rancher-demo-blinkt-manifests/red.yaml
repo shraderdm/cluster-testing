@@ -1,0 +1,96 @@
+# Source: rancher-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rgs-red-rancher-demo
+  labels:
+    app.kubernetes.io/name: rancher-red
+    app.kubernetes.io/instance: rgs-red
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: rancher-red
+    app.kubernetes.io/instance: rgs-red
+---
+# Source: rancher-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rgs-red-rancher-demo
+  labels:
+    app.kubernetes.io/name: rancher-red
+    app.kubernetes.io/instance: rgs-red
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rancher-red
+      app.kubernetes.io/instance: rgs-red
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: rancher-red
+        app.kubernetes.io/instance: rgs-red
+        blinkt: show
+        blinktColor: FF0000
+    spec:
+      serviceAccountName: rancher-demo
+      securityContext:
+        {}
+      containers:
+        - name: rancher-red
+          securityContext:
+            {}
+          image: "bgulla/rancher-demo:latest"
+          imagePullPolicy: IfNotPresent
+          env:          
+          - name: COW_COLOR
+            value: "red"
+          - name: METADATA
+            value: "Deployed via Fleet"
+          - name: SHOW_VERSION
+            value: "false"
+          - name: TITLE
+            value: "k3s red demo"  
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            requests:
+              cpu: 4m
+              memory: 10Mi
+---
+# Source: rancher-demo/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rgs-red-rancher-demo
+  labels:
+    app.kubernetes.io/name: rancher-red
+    app.kubernetes.io/instance: rgs-red
+spec:
+  rules:
+    - host: "rancher-demo.red.k3s.example.home"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: rgs-red-rancher-demo
+                port:
+                  number: 80

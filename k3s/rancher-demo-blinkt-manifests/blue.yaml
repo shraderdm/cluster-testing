@@ -1,0 +1,100 @@
+# Source: rancher-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rgs-blue-rancher-demo
+  namespace: blue-demo
+  labels:
+    app.kubernetes.io/name: rancher-blue
+    app.kubernetes.io/instance: rgs-blue
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: rancher-blue
+    app.kubernetes.io/instance: rgs-blue
+---
+# Source: rancher-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rgs-blue-rancher-demo
+  namespace: blue-demo
+  labels:
+    app.kubernetes.io/name: rancher-blue
+    app.kubernetes.io/instance: rgs-blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rancher-blue
+      app.kubernetes.io/instance: rgs-blue
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: rancher-blue
+        app.kubernetes.io/instance: rgs-blue
+        blinkt: show
+        blinktColor: 0000FF
+    spec:
+      serviceAccountName: rancher-demo
+      securityContext:
+        {}
+      containers:
+        - name: rancher-blue
+          securityContext:
+            {}
+          image: "bgulla/rancher-demo:latest"
+          imagePullPolicy: IfNotPresent
+          env:          
+          - name: COW_COLOR
+            value: "blue"
+          - name: METADATA
+            value: "Deployed via Fleet"
+          - name: SHOW_VERSION
+            value: "false"
+          - name: TITLE
+            value: "k3s blue demo"  
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            requests:
+              cpu: 4m
+              memory: 10Mi
+      priorityClassName: high-priority
+---
+# Source: rancher-demo/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rgs-blue-rancher-demo
+  namespace: blue-demo
+  labels:
+    app.kubernetes.io/name: rancher-blue
+    app.kubernetes.io/instance: rgs-blue
+spec:
+  rules:
+    - host: "rancher-demo.blue.k3s.example.home"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: rgs-blue-rancher-demo
+                port:
+                  number: 80
