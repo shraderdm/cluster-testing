@@ -1,13 +1,13 @@
 defaultNamespace: default
 helm:
-  chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.2.0.tgz?raw=true
+  chart: https://github.com/shraderdm/charts/blob/main/assets/rancher-demo-0.2.1.tgz?raw=true
   values:
     image:
       repository: bgulla/rancher-demo
       tag: "latest"
     env:
       SHOW_VERSION: true
-      COW_COLOR: "blue"
+      COW_COLOR: "red"
       TITLE: "k3s blue LED Rancher demo"
     ingress:
       hosts:
@@ -18,8 +18,8 @@ helm:
     autoscaling:
       enabled: true
       minReplicas: 3
-      maxReplicas: 32
+      maxReplicas: 31
       targetCPUUtilizationPercentage: 80
     podLabels:
       blinkt: show
-      blinktColor: 0000FF
+      blinktColor: FF0000
