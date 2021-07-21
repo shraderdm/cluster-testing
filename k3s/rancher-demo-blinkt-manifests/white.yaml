@@ -73,6 +73,28 @@ spec:
             requests:
               cpu: 4m
               memory: 10Mi
+
+---                
+# Source: rancher-demo/templates/hpa.yaml
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: rgs-w-rancher-demo
+  labels:
+    app.kubernetes.io/name: rancher-white
+    app.kubernetes.io/instance: rgs-w
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rgs-colors-rancher-demo
+  minReplicas: 2
+  maxReplicas: 12
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 80
 ---
 # Source: rancher-demo/templates/ingress.yaml
 apiVersion: networking.k8s.io/v1

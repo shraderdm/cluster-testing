@@ -77,6 +77,27 @@ spec:
               memory: 10Mi
       priorityClassName: high-priority
 ---
+# Source: rancher-demo/templates/hpa.yaml
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: rgs-blue-rancher-demo
+  labels:
+    app.kubernetes.io/name: rancher-blue
+    app.kubernetes.io/instance: rgs-blue
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rgs-blue-rancher-demo
+  minReplicas: 2
+  maxReplicas: 31
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 80
+---
 # Source: rancher-demo/templates/ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
