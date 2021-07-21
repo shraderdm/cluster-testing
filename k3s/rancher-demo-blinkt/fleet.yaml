@@ -20,7 +20,6 @@ helm:
       minReplicas: 3
       maxReplicas: 32
       targetCPUUtilizationPercentage: 80
-    podAnnotations:
-      labels:
-        blinkt: show
-        blinktColor: 0000FF
+    podLabels:
+      blinkt: show
+      blinktColor: 0000FF
