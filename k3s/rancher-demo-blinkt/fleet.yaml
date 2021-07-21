@@ -18,7 +18,7 @@ helm:
     autoscaling:
       enabled: true
       minReplicas: 3
-      maxReplicas: 32
+      maxReplicas: 31
       targetCPUUtilizationPercentage: 80
     podLabels:
       blinkt: show
