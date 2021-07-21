@@ -9,7 +9,6 @@ helm:
       SHOW_VERSION: true
       COW_COLOR: "red"
       TITLE: "k3s blue LED Rancher demo"
-      COLOR: "FF0000"
     ingress:
       hosts:
         - host: rancher-demo-blue.k3s.example.home
@@ -23,3 +22,4 @@ helm:
       targetCPUUtilizationPercentage: 80
     podLabels:
       blinkt: show
+      blinktColor: FF0000
