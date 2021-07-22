@@ -1,12 +1,3 @@
-# Source: rancher-demo/templates/serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: rancher-demo
-  labels:
-    app.kubernetes.io/name: rancher-green
-    app.kubernetes.io/instance: rgs-green  
----
 # Source: rancher-demo/templates/service.yaml
 apiVersion: v1
 kind: Service
@@ -49,7 +40,6 @@ spec:
         blinktColor: 00FF00
     spec:
       priorityClassName: med-priority
-      serviceAccountName: rancher-demo
       securityContext:
         {}
       containers:
