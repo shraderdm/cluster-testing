@@ -39,7 +39,6 @@ spec:
         blinkt: show
         blinktColor: FF0000
     spec:
-      serviceAccountName: rancher-demo
       securityContext:
         {}
       containers:
