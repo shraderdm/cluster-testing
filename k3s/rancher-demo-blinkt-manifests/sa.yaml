@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: rancher-demo
-  labels:
-    app.kubernetes.io/name: rancher-red
-    app.kubernetes.io/instance: rgs-colors
