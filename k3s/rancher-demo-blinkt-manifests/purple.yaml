@@ -1,12 +1,3 @@
-# Source: rancher-demo/templates/serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: rancher-demo
-  labels:
-    app.kubernetes.io/name: rancher-purple
-    app.kubernetes.io/instance: rgs-p  
----
 # Source: rancher-demo/templates/service.yaml
 apiVersion: v1
 kind: Service
@@ -48,7 +39,6 @@ spec:
         blinkt: show
         blinktColor: 8F00FF
     spec:
-      serviceAccountName: rancher-demo
       securityContext:
         {}
       containers:
