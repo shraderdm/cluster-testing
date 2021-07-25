@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: cam
+  name: cam
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cam
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cam
+        blinkt: show
+        blinktColor: FFFFFF
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                 matchExpressions:
+                 - key: "app.kubernetes.io/name"
+                   operator: In
+                   values:
+                   - cam
+            topologyKey: topology.kubernetes.io/hostname
+      containers:
+      - env:
+        - name: ENV_FPS
+          value: "10"
+        image: badsmoke/mjpg-streamer:1.0.1
+        imagePullPolicy: IfNotPresent
+        name: cam-main
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources: {}
+        securityContext:
+          privileged: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /dev/video0
+          name: dev-video0
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+      periodSeconds: 20  
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        cam: "true"
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /dev/video0
+          type: ""
+        name: dev-video0
