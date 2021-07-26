@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rancher-demo-purple
+  labels:
+    app.kubernetes.io/name: rancher-demo
+    app.kubernetes.io/instance: purple
+spec:
+  replicas: 32
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rancher-demo
+      app.kubernetes.io/instance: purple
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: rancher-demo
+        app.kubernetes.io/instance: purple
+        blinkt: show
+        blinktColor: 8F00FF
+    spec:
+      securityContext:
+        {}
+      containers:
+        - name: rancher-purple
+          securityContext:
+            {}
+          image: "bgulla/rancher-demo:latest"
+          imagePullPolicy: IfNotPresent
+          env:          
+          - name: COW_COLOR
+            value: "purple"
+          - name: METADATA
+            value: "Deployed via Fleet"
+          - name: SHOW_VERSION
+            value: "true"
+          - name: VERSION
+            value: "0.1"
+          - name: TITLE
+            value: "Rancher demo"  
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            requests:
+              cpu: 4m
+              memory: 445Mi
+            limits:    
+              memory: 445Mi
+      priorityClassName: high-priority
