@@ -25,14 +25,12 @@ spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                 matchExpressions:
-                 - key: "app.kubernetes.io/name"
-                   operator: In
-                   values:
-                   - cam
+          - labelSelector:
+              matchExpressions:
+              - key: "app.kubernetes.io/name"
+                operator: In
+                values:
+                - cam
             topologyKey: topology.kubernetes.io/hostname
       containers:
       - lifecycle:
