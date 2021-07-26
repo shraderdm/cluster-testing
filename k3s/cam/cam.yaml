@@ -60,6 +60,7 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 20  
       dnsPolicy: ClusterFirst
+      priorityClassName: device-priority
       nodeSelector:
         cam: "true"
       restartPolicy: Always
