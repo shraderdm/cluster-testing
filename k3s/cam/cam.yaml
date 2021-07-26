@@ -53,7 +53,7 @@ spec:
         volumeMounts:
         - mountPath: /dev/video0
           name: dev-video0
-          mountPropogation: Bidirectional
+          mountPropagation: Bidirectional
         livenessProbe:
           tcpSocket:
             port: 8080
