@@ -13,6 +13,7 @@ spec:
         name: blinkt-k8s-controller
     spec:
       serviceAccountName: blinkt-k8s-controller-sa
+      priorityClassName: device-priority
       nodeSelector:
         deviceType: blinkt
       containers:
