@@ -13,6 +13,7 @@ spec:
         name: blinkt-k8s-controller
     spec:
       serviceAccountName: blinkt-k8s-controller-sa
+      priorityClassName: device-priority
       nodeSelector:
         deviceType: blinkt
       containers:
@@ -30,6 +31,10 @@ spec:
         volumeMounts:
         - mountPath: /sys
           name: sys-tree
+      tolerations:
+      - key: "lights"
+        operator: "Exists"
+        effect: "NoSchedule"  
       volumes:
       - name: sys-tree
         hostPath:

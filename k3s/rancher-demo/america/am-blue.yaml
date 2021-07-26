@@ -61,6 +61,5 @@ spec:
         fav_color: blue
       tolerations:
       - key: "lights"
-        value:  "notAllowed"
-        operator: "Equal"
+        operator: "Exists"
         effect: "NoSchedule"
