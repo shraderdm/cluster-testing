@@ -1,3 +1,10 @@
 defaultNamespace: ingress-nginx
 helm:
   chart: https://github.com/kubernetes/ingress-nginx/releases/download/helm-chart-3.34.0/ingress-nginx-3.34.0.tgz
+  values:
+    configAnnotations:
+    - nginx.ingress.kubernetes.io/proxy-body-size: 999m
+    - nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
+    - nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+    - nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
+    
