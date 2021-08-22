@@ -3,27 +3,27 @@ targetCustomizations:
 - name: metallb-dev
   clusterSelector:
     matchLabels:
-      fleet-demo: dev
+      metallb: dev
   kustomize:
     dir: overlays/dev
 
 - name: metallb-cluster1
   clusterSelector:
     matchLabels:
-      fleet-demo: cluster1
+      metallb: cluster1
   kustomize:
     dir: overlays/cluster1
 
 - name: metallb-cluster2
   clusterSelector:
     matchLabels:
-      fleet-demo: cluster2
+      metallb: cluster2
   kustomize:
     dir: overlays/cluster2
 
 - name: metallb-cluster3
   clusterSelector:
     matchLabels:
-      fleet-demo: cluster3
+      metallb: cluster3
   kustomize:
     dir: overlays/cluster3
