@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: rancher-demo
     app.kubernetes.io/instance: blue
 spec:
-  replicas: 6
+  replicas: 4
   selector:
     matchLabels:
       app.kubernetes.io/name: rancher-demo
