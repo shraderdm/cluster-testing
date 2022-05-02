@@ -20,7 +20,7 @@ spec:
       labels:
         app.kubernetes.io/name: cam
         blinkt: show
-        blinktColor: FFFFFF
+        blinktColor: FF000
     spec:
       affinity:
         podAntiAffinity:
